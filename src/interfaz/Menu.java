@@ -1,15 +1,21 @@
 package interfaz;
 
 import interfaz.clasesAuxiliares.AnimatorSwing;
+import interfaz.clasesAuxiliares.FadeOverlay;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 
-public class Test2 extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame {
 
 private Font pixeloidFont;
+private JLabel blackScreen;
 
 private void cargarFuentePixel() {
     try {
@@ -23,17 +29,24 @@ private void cargarFuentePixel() {
         pixeloidFont = new Font("SansSerif", Font.PLAIN, 24);
     }
 }
-    public Test2() {
+    public Menu() {
         initComponents();
         cargarFuentePixel();   
+        botonRank.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        botonJugar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        botonSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
         AnimatorSwing.floatAnimation(PlaceHolderMenu, 5, 0.03);
         AnimatorSwing.floatAnimation(menuText, 5, 0.03);
         AnimatorSwing.floatAnimation(menuTextBase, 5, 0.03);
         AnimatorSwing.floatAnimation(menuTextShadow, 5, 0.03);
+        AnimatorSwing.floatAnimation(jugarBo, 3, 0.04);
+        AnimatorSwing.floatAnimation(rankBo, 3, 0.04);
+        AnimatorSwing.floatAnimation(exitBo, 3, 0.04);
+        AnimatorSwing.floatAnimation(fondo, 6, 0.01);
          botonRank.addMouseListener(new java.awt.event.MouseAdapter() {
          @Override
          public void mouseEntered(java.awt.event.MouseEvent evt) {
-         AnimatorSwing.floatAnimation(rank, 2, 0.10); 
+         AnimatorSwing.floatAnimation(rank, 3, 0.10); 
     }
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -42,7 +55,7 @@ private void cargarFuentePixel() {
           botonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
          @Override
          public void mouseEntered(java.awt.event.MouseEvent evt) {
-         AnimatorSwing.floatAnimation(exit, 2, 0.10); 
+         AnimatorSwing.floatAnimation(exit, 3, 0.10); 
     }
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -51,13 +64,22 @@ private void cargarFuentePixel() {
         botonJugar.addMouseListener(new java.awt.event.MouseAdapter() {
          @Override
          public void mouseEntered(java.awt.event.MouseEvent evt) {
-         AnimatorSwing.floatAnimation(jugar, 2, 0.10); 
+         AnimatorSwing.floatAnimation(jugar, 3, 0.10); 
     }
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
         AnimatorSwing.stopAnimation(); // detener animación
     }});
-   
+        // Fade de entrada al abrir la aplicación
+         FadeOverlay overlay = new FadeOverlay(30, 2000, Color.WHITE, () -> {
+             // Esto se ejecuta cuando termina el fade
+             System.out.println("Fade completado!");
+         });
+         getLayeredPane().add(overlay, JLayeredPane.MODAL_LAYER);
+         overlay.setBounds(0, 0, getWidth(), getHeight());
+         overlay.start();
+
+         
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +112,7 @@ private void cargarFuentePixel() {
         companyText = new javax.swing.JLabel();
         companyText2 = new javax.swing.JLabel();
         version = new javax.swing.JLabel();
-        Fondo = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,15 +121,30 @@ private void cargarFuentePixel() {
 
         botonJugar.setBorderPainted(false);
         botonJugar.setContentAreaFilled(false);
+        botonJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonJugarActionPerformed(evt);
+            }
+        });
         jPanel1.add(botonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 490, 450, 130));
 
         botonRank.setBorderPainted(false);
         botonRank.setContentAreaFilled(false);
-        jPanel1.add(botonRank, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 640, 320, 130));
+        botonRank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRankActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonRank, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 640, 430, 130));
 
         botonSalir.setBorderPainted(false);
         botonSalir.setContentAreaFilled(false);
-        jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 800, 320, 130));
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 800, 430, 130));
 
         menuText.setFont(new java.awt.Font("Pixeloid Sans", 0, 100)); // NOI18N
         menuText.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,7 +153,7 @@ private void cargarFuentePixel() {
         jPanel1.add(menuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 160, 800, 190));
 
         menuTextBase.setFont(new java.awt.Font("Pixeloid Sans", 0, 100)); // NOI18N
-        menuTextBase.setForeground(new java.awt.Color(153, 153, 153));
+        menuTextBase.setForeground(new java.awt.Color(0, 204, 204));
         menuTextBase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuTextBase.setText("TRIVIA GALAXY");
         jPanel1.add(menuTextBase, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, 800, 260));
@@ -137,10 +174,10 @@ private void cargarFuentePixel() {
         jPanel1.add(jugarText, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 520, 200, 70));
 
         jugarbase.setFont(new java.awt.Font("Pixeloid Sans", 0, 48)); // NOI18N
-        jugarbase.setForeground(new java.awt.Color(153, 153, 153));
+        jugarbase.setForeground(new java.awt.Color(0, 204, 204));
         jugarbase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugarbase.setText("JUGAR");
-        jPanel1.add(jugarbase, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 510, 200, 90));
+        jPanel1.add(jugarbase, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 513, 200, 90));
 
         jugarsombra.setFont(new java.awt.Font("Pixeloid Sans", 0, 50)); // NOI18N
         jugarsombra.setForeground(new java.awt.Color(30, 126, 126));
@@ -161,10 +198,10 @@ private void cargarFuentePixel() {
         jPanel1.add(jugarlbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 670, 200, 70));
 
         jugarbase1.setFont(new java.awt.Font("Pixeloid Sans", 0, 48)); // NOI18N
-        jugarbase1.setForeground(new java.awt.Color(153, 153, 153));
+        jugarbase1.setForeground(new java.awt.Color(0, 204, 204));
         jugarbase1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugarbase1.setText("RANK");
-        jPanel1.add(jugarbase1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 660, 200, 90));
+        jPanel1.add(jugarbase1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 663, 200, 90));
 
         jugarsombra1.setFont(new java.awt.Font("Pixeloid Sans", 0, 50)); // NOI18N
         jugarsombra1.setForeground(new java.awt.Color(30, 126, 126));
@@ -185,10 +222,10 @@ private void cargarFuentePixel() {
         jPanel1.add(jugarlbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 820, 200, 70));
 
         jugarbase2.setFont(new java.awt.Font("Pixeloid Sans", 0, 48)); // NOI18N
-        jugarbase2.setForeground(new java.awt.Color(153, 153, 153));
+        jugarbase2.setForeground(new java.awt.Color(153, 0, 153));
         jugarbase2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jugarbase2.setText("SALIR");
-        jPanel1.add(jugarbase2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 810, 200, 90));
+        jPanel1.add(jugarbase2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 813, 200, 90));
 
         jugarsombra2.setFont(new java.awt.Font("Pixeloid Sans", 0, 50)); // NOI18N
         jugarsombra2.setForeground(new java.awt.Color(92, 71, 125));
@@ -220,8 +257,8 @@ private void cargarFuentePixel() {
         version.setText("Made and distributed by: HexSonic.inc ");
         jPanel1.add(version, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 1020, 310, 40));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/recursos/kn3ai07br4d11.png"))); // NOI18N
-        jPanel1.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/recursos/kn3ai07br4d11.png"))); // NOI18N
+        jPanel1.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,6 +274,22 @@ private void cargarFuentePixel() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarActionPerformed
+        PrePartida entrada = new PrePartida();
+        entrada.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonJugarActionPerformed
+
+    private void botonRankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRankActionPerformed
+        Ranking entrada = new Ranking();
+        entrada.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_botonRankActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -247,24 +300,23 @@ private void cargarFuentePixel() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Test2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Test2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Test2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Test2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Test2().setVisible(true);
+                new Menu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Fondo;
     private javax.swing.JLabel PlaceHolderMenu;
     private javax.swing.JButton botonJugar;
     private javax.swing.JButton botonRank;
@@ -273,6 +325,7 @@ private void cargarFuentePixel() {
     private javax.swing.JLabel companyText2;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel exitBo;
+    private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jugar;
     private javax.swing.JLabel jugarBo;
