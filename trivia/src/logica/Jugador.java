@@ -1,14 +1,12 @@
 package logica;
 
-public class Jugador {
+public abstract class Jugador {
     private String nombre;
-    private String passwd;
-    private double puntaje;
+    private String tipo;
 
-    public Jugador(String nombre, String passwd, double puntaje) {
+    public Jugador(String nombre, String tipo) {
         this.nombre = nombre;
-        this.passwd = passwd;
-        this.puntaje = puntaje;
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -19,20 +17,18 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public double getPuntaje() {
-        return puntaje;
+    @Override
+    public String toString() {
+        return nombre+": tipo: "+tipo;
     }
-
-    public void setPuntaje(double puntaje) {
-        this.puntaje = puntaje;
-    }
+    
     
 }

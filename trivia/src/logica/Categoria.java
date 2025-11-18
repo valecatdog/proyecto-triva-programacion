@@ -1,18 +1,18 @@
 package logica;
 
+//VER COMO HACER LO DE LA LSITA DE JUGADORES
+
 import java.util.ArrayList;
 
 public class Categoria {
     private String nombre;
     private String descripcion;
     private ArrayList<Jugador> jugadores;
-    private ArrayList<Double> puntaje; //no se por que no le gusta
-
-    public Categoria(String nombre, String descripcion, ArrayList<Jugador> jugadores, ArrayList<Double> puntaje) {
+    private ArrayList<Double> puntaje;
+    
+    public Categoria(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.jugadores = jugadores;
-        this.puntaje = puntaje;
     }
 
     public String getNombre() {
@@ -30,23 +30,5 @@ public class Categoria {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public ArrayList<Jugador> getJugadores() {
-        return jugadores;
-    }
-
-    public void setJugadores(ArrayList<Jugador> jugadores) {
-        this.jugadores = jugadores;
-    }
-
-    public ArrayList<Double> getPuntaje() {
-        return puntaje;
-    }
-
-    public void setPuntaje(ArrayList<Double> puntaje) {
-        this.puntaje = puntaje;
-    }
-    
-    
     
 }
