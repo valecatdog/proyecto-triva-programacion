@@ -45,6 +45,7 @@ public class PrePartida extends javax.swing.JFrame {
         menuTextBase = new javax.swing.JLabel();
         menuTextShadow = new javax.swing.JLabel();
         configMenu = new javax.swing.JLabel();
+        configMenu1 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         menuTextShadow1 = new javax.swing.JLabel();
 
@@ -118,8 +119,12 @@ public class PrePartida extends javax.swing.JFrame {
         jPanel1.add(menuTextShadow, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 930, 270));
 
         configMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        configMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/recursos/17 nov 2025, 09_48_56.png"))); // NOI18N
-        jPanel1.add(configMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 1410, 880));
+        configMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/recursos/MenuSmall.png"))); // NOI18N
+        jPanel1.add(configMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, -50, 1410, 880));
+
+        configMenu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        configMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/recursos/17 nov 2025, 09_48_56.png"))); // NOI18N
+        jPanel1.add(configMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 1410, 880));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaz/recursos/Desenfocado.png"))); // NOI18N
         jPanel1.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 1920, 1080));
@@ -190,6 +195,7 @@ public class PrePartida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonSalir;
     private javax.swing.JLabel configMenu;
+    private javax.swing.JLabel configMenu1;
     private javax.swing.JLabel exitBo;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel jPanel1;
