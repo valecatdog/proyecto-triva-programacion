@@ -42,16 +42,16 @@ public class Juego {
     }
     
     
-    
+    //VER EL CONTRUCTOR DE EL COSO ESTE QUE LO CAMBIE, NO NECESITA HERENCIA
     
     //JUGADORES
-    public void addJugador(String nombre, String tipo, String passwd){
-        Jregistrado jugador = new Jregistrado( nombre, tipo, passwd);
+    public void addJugador(String nombre,String passwd){
+        Jugador jugador = new Jugador( nombre, passwd);
         jugadores.add(jugador);
     }
     
-    public void addJugador(String nombre, String tipo){
-        Jsistema jugador = new Jsistema( nombre, tipo);
+    public void addJugador(String nombre){
+        Jugador jugador = new Jugador( nombre);
         jugadores.add(jugador);
     }
     

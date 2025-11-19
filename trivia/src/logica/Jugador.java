@@ -1,12 +1,21 @@
 package logica;
 
-public abstract class Jugador {
+public class Jugador {
     private String nombre;
     private String tipo;
+    private String passwd;
 
-    public Jugador(String nombre, String tipo) {
+
+    public Jugador(String nombre) {
         this.nombre = nombre;
-        this.tipo = tipo;
+        this.tipo = "default";
+        this.passwd = "";
+    }
+    
+    public Jugador(String nombre, String passwd) {
+        this.nombre = nombre;
+        this.tipo = "jugador";
+        this.passwd = passwd;
     }
 
     public String getNombre() {
@@ -27,7 +36,7 @@ public abstract class Jugador {
 
     @Override
     public String toString() {
-        return nombre+": tipo: "+tipo;
+        return nombre+": tipo: "+tipo+", contraseña: "+passwd;
     }
     
     

@@ -46,5 +46,12 @@ public class Pregunta {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    @Override
+    public String toString() {
+        return "Pregunta{" + "pregunta=" + pregunta + ", posiblesRespuestas=" + posiblesRespuestas + ", respuestaCorrecta=" + respuestaCorrecta + ", categoria=" + categoria + '}';
+    }
+    
+    
     
 }
